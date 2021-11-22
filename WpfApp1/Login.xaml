@@ -1,0 +1,109 @@
+﻿<Window x:Class="WpfApp1.Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+           xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Login" Height="600" Width="900" WindowStartupLocation="CenterScreen">
+    <Grid Background="#b0c4de">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.RowSpan="3" Grid.ColumnSpan="4"  Margin="168,92,149,0" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0" Background="white">
+                <Grid.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="Height" Value="30"/>
+                        <Setter Property="Width" Value="100"/>
+                        <Setter Property="Template" >
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border
+                                        CornerRadius="15"
+                                        BorderThickness="1"
+                                        Background="{TemplateBinding Background}">
+                                        <ContentPresenter
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"></ContentPresenter>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Grid.Resources>
+                <Label FontSize="25" FontWeight="Bold" Margin="100 20 0 0" >Sign in</Label>
+                <TextBox
+                    VerticalAlignment="Top" Margin="0 60 0 0"
+  materialDesign:HintAssist.Hint="Username"
+  Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                    Height="55"
+                    FontSize="20"
+                    Width="250"
+                   />
+                <TextBox
+                    VerticalAlignment="Center" 
+  materialDesign:HintAssist.Hint="Password"
+  Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                      Height="55"
+                    FontSize="20"
+                    Width="250"
+                   />
+                <Label Content="forgot your password" FontSize="13" VerticalAlignment="Bottom" Margin="0 0 0 100" HorizontalAlignment="Center"/>
+                <Button Content="Sign in"
+                        Background="#0000cd"
+                        Foreground="white"
+                        VerticalAlignment="Bottom" Margin="81,0,97,51"
+                        Click="Button_Click"/>
+              
+            </Grid>
+            <Grid Grid.Column="1" Background="#ffa07a">
+                <Grid.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="Height" Value="30"/>
+                        <Setter Property="Width" Value="100"/>
+                        <Setter Property="Template" >
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border
+                                        CornerRadius="15"
+                                        BorderThickness="1"
+                                        BorderBrush="White"
+                                        Background="{TemplateBinding Background}">
+                                        <ContentPresenter
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"></ContentPresenter>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Grid.Resources>
+                <Label Content="Hello,Friend!" Foreground="white" FontWeight="Bold" FontSize="25" HorizontalAlignment="Left" Margin="72,81,0,0" VerticalAlignment="Top" Height="45" Width="170"/>
+                <TextBlock FontSize="13" VerticalAlignment="Center" Foreground="white" HorizontalAlignment="Center"  Height="43" Margin="10,150,10,142" Width="200">
+                      <Span>Enter your personal details and start</Span>  
+                         <LineBreak/>  
+                       <Span>journey with us</Span>    
+                </TextBlock>
+                <Button Content="Sign up" 
+                        VerticalAlignment="Bottom" Background="#ffa07a" BorderBrush="White" BorderThickness="2"  Foreground="white" Margin="81,0,97,90"
+                        Click="Button_Click"/>
+
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

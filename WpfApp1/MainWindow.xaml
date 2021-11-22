@@ -1,0 +1,518 @@
+﻿<Window x:Class="WpfApp1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+         xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="650" Width="1150" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid Height="60" VerticalAlignment="Top" Background="#FF9C27B0">
+            <TextBlock Text="Phần Mềm Bán Cafe1" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25" FontFamily="Champagne &amp; Limousines" />
+            <Button HorizontalAlignment="Right" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}">
+                <materialDesign:PackIcon Kind="Power"/>
+            </Button>
+        </Grid>
+        <Grid Margin="0 60 0 0">
+
+            <dragablz:TabablzControl  >
+                <dragablz:TabablzControl.InterTabController>
+                    <dragablz:InterTabController/>
+                </dragablz:TabablzControl.InterTabController>
+                <TabItem Header="Trang Chủ" Name="home" >
+                    <Image Height="750" Source="https://i.pinimg.com/originals/f8/81/ad/f881ad2778cc7d7c88791e14c9419b52.jpg"/>
+                </TabItem>
+                
+                <!--Bán Hàng-->
+                <TabItem Name="sell" Header="Bán Hàng" >
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="400*"/>
+                            <ColumnDefinition Width="650*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0" Height="650" Name="sellBodyLeft" >
+                            <StackPanel   Margin="20 20 20 0" VerticalAlignment="Top">
+                                <ItemsControl x:Name="listViewSell" >
+                                    <ItemsControl.ItemTemplate >
+                                        <DataTemplate >
+                                            <Border  Width="120"  Margin="5 0 5 0" Height="150" >
+                                                <StackPanel  >
+                                                    <Button  Height="100" Click="btn_sellBodyLeftImageTable" Name="sellBodyLeftImageTable" BorderBrush="{x:Null}" Background="Red" >
+
+                                                        <Image x:Name="img"   Source="{Binding Image}"/>
+
+                                                    </Button>
+                                                    <TextBlock Margin="30 0" Text="{Binding Name}" Name="sellBodyNameTable" FontSize="15"/>
+                                                </StackPanel>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel/>
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                </ItemsControl>
+                                <StackPanel Height="50" VerticalAlignment="Bottom"   >
+                                    <StackPanel Orientation="Horizontal" Margin="15 10">
+                                        <Label Height="20" Width="20" Background="Aqua"/>
+                                        <Label>Bàn Đang Trống</Label>
+                                        <Label Height="20" Width="20" Background="Blue"/>
+                                        <Label>Bàn Đang Phục Vụ</Label>
+                                        <Label Height="20" Width="20" Background="Yellow"/>
+                                        <Label>Bàn Đặt Trước</Label>
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                        <Grid Grid.Column="1" Name="sellBodyRight">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="250*"/>
+                                <ColumnDefinition Width="400*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.ColumnSpan="2" Name="sellBodyRightImage" Visibility="Visible" >
+                                <Image  Height="850" Source="https://kinhnghiemsong24h.com/wp-content/uploads/2021/05/tao-dang-voi-do-an.jpg"/>
+                            </Grid>
+                            <Border  BorderBrush="Gainsboro" BorderThickness="1">
+                                <StackPanel Grid.Column="0" Name="sellBodyRightLeft" Visibility="Hidden"  >
+                                    <StackPanel Height="150"  Orientation="Horizontal">
+                                        <Image Height="150" Name="sellBodyRightLeftImage" Source="C:\Users\Admin\OneDrive\Máy tính\ảnh\logo.png"/>
+                                        <TextBlock VerticalAlignment="Center" FontStyle="Italic" Foreground="#a0522d" Name="sellBodyRightLeftTableName" Margin="5 20" FontSize="20" FontWeight="Bold" Text="Bàn 1"/>
+                                    </StackPanel>
+                                    <StackPanel Height="350" >
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="Status:" Margin="10 30 0 0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="25"/>
+                                            <TextBox Height="25" Name="sellBodyRightLeftStatus" FontWeight="Bold" Margin="10 27 0 0" Width="150" Text="Trống" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                                        </StackPanel>
+                                        <StackPanel    Margin="10" Orientation="Horizontal">
+                                            <Button  Width="90" x:Name="sellBodyRightLeftBooking" Click="btn_sellBodyRightLeftBooking" Margin="30 0 20 0" Content="Đặt Bàn"/>
+                                            <Button  Width="90" x:Name="sellBodyRightLeftOrder" Click="btn_sellBodyRightLeftOrder" Content="Gọi Món"/>
+                                        </StackPanel>
+                                        <StackPanel VerticalAlignment="Top">
+                                            <Button Width="90" Name="sellBodyRightLeftCanCel"  Click="btn_sellBodyRightLeftCanCel" Margin="0 0 0 0" Content="Hủy Bàn"/>
+                                        </StackPanel>
+                                        <Button Visibility="Hidden" Margin="90 0 0 0" Width="90" Click="btn_sellBodyRightLeftComeBack" Name="sellBodyRightLeftComBack" HorizontalAlignment="Left" Content="Quay Lại"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                            <Border  BorderBrush="Gainsboro" BorderThickness="1">
+                                <StackPanel Grid.Column="0" Visibility="Hidden" Name="sellBodyRightLeftChooseDish"   >
+                                    <StackPanel Height="150"  Orientation="Horizontal">
+                                        <Image Height="150" Name="sellBodyRightLeftChooseDishImage" Source="C:\Users\Admin\OneDrive\Máy tính\ảnh\logo.png"/>
+                                        <TextBlock VerticalAlignment="Center" FontStyle="Italic" Foreground="#a0522d" Name="sellBodyRightLeftChooseDishTableName" Margin="5 20" FontSize="20" FontWeight="Bold" Text="Bàn 1"/>
+                                    </StackPanel>
+                                    <StackPanel Height="350">
+                                        <StackPanel Orientation="Horizontal" >
+                                            <TextBlock Text="Status:" Margin="10 30 0 0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="25"/>
+                                            <TextBox Height="25" Name="sellBodyRightLeftChooseDishStatus" FontWeight="Bold" Margin="10 27 0 0" Width="150" Text="Trống" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                                        </StackPanel>
+                                        <StackPanel VerticalAlignment="Top">
+                                            <ListView Height="120" Name="sellBodyRightLefChooseDishListView"  VerticalAlignment="Top">
+                                                <ListViewItem>cafe_nâu</ListViewItem>
+                                                <ListViewItem>cafe_den</ListViewItem>
+                                                <ListViewItem>cafe_lac</ListViewItem>
+                                               
+                                            </ListView>
+                                        </StackPanel>
+                                        <StackPanel  Orientation="Horizontal">
+                                            <TextBlock Margin="80 15 0 0" Text="Tiền Món:"/>
+                                            <TextBox x:Name="sellBodyRightLefChooseDishMoney" Margin="5 13 0 0" Text="20.000"/>
+                                        </StackPanel>
+                                        <StackPanel  Orientation="Horizontal">
+                                            <TextBlock  Margin="80 13 0 0" Text="Giảm Giá:"/>
+                                            <TextBox x:Name="sellBodyRightLefChooseDishDisCount" Margin="5 10 0 0" Text="20.000"/>
+                                        </StackPanel>
+                                        <StackPanel  Orientation="Horizontal">
+                                            <TextBlock Text="Tổng Tiền:" Foreground="Red" Margin="80 13 0 0"/>
+                                            <TextBox Foreground="Red" Name="sellBodyRightLefChooseDishTotalMoney" Margin="5 10 0 0" Text="20.000"/>
+                                        </StackPanel>
+                                        <Button Width="110" Margin="0 0" Content="Thanh Toán" Click="btn_sellBodyRightLefChooseDishPay"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                            <Grid Grid.Column="1" Name="sellBodyRightRight">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="150*"/>
+                                    <ColumnDefinition Width="250*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.ColumnSpan="2" Name="sellBodyRightRightImage"  Visibility="Hidden" >
+                                    <Image Height="615"  Source="https://i.pinimg.com/474x/5b/c3/04/5bc304e05a102fd432f5cf7df1589e7c.jpg"/>
+                                </Grid>
+                                <Grid Grid.Column="0" Name="sellBodyRightRightLeftMenu" Visibility="Hidden">
+                                    <Border  BorderBrush="Gainsboro" BorderThickness="1">
+                                        <StackPanel>
+                                            <StackPanel Background=" Bisque">
+                                                <Label FontSize="20" HorizontalAlignment="Center" >Menu</Label>
+                                            </StackPanel>
+                                            <Button Background="#ff7f50" Width="130" Margin="0 20 0 0" BorderBrush="{x:Null}" Content="Cafe" Click="btn_sellBodyRightRightLeft_Cafe"/>
+                                            <Button Background="#deb887"  Width="130" BorderBrush="{x:Null}" Content="Nước đóng trai" Click="btn_sellBodyRightRightLeft_BottledWater"/>
+                                            <Button Background="#6495ed"  Width="130"  BorderBrush="{x:Null}" Content="Bạc Xỉu"  Click="btn_sellBodyRightRightLeft_FaintSilver"/>
+                                            <Button Background="#b8860b"  Width="130" BorderBrush="{x:Null}" Content="Nước Lon"  Click="btn_sellBodyRightRightLeft_CansOfWater"/>
+                                            <Button Background="#9acd32"  Width="130" BorderBrush="{x:Null}" Content="Đồ ăn nhanh" Click="btn_sellBodyRightRightLeft_FastFood"/>
+                                            <Button Background="#cd853f"  Width="130"  BorderBrush="{x:Null}" Content="  Đồ ăn khác"  Click="btn_sellBodyRightRightLeft_OtherFood"/>
+                                        </StackPanel>
+                                    </Border>
+                                </Grid>
+                                <Grid Grid.Column="1" Visibility="Hidden"  x:Name="sellBodyRightRightRight">
+                                    <StackPanel>
+                                        <Label FontSize="20" HorizontalAlignment="Center">Nhóm Sản Phẩm cafe</Label>
+                                        <StackPanel  Width="250" Margin="10 0 0 0" >
+                                            <StackPanel Background="#deb887">
+                                            </StackPanel>
+                                            <ItemsControl x:Name="listViewSellDetailProduct">
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Button  Width="100" x:Name="sellBodyRightRightRightChooseProduct" Click="btn_sellBodyRightRightRightChooseProduct" Margin="0 5 25 0" Height="100">
+                                                            <StackPanel >
+                                                                <TextBlock Margin="5 0" Text="{Binding Name}" Name="sellBodyRightRightRightProduct" FontSize="15"/>
+                                                                <TextBlock Margin="5 0" Text="{Binding Pricer}" Name="sellBodyRightRightRightPricer" FontSize="15"/>
+                                                            </StackPanel>
+                                                        </Button>
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                                <ItemsControl.ItemsPanel>
+                                                    <ItemsPanelTemplate>
+                                                        <WrapPanel/>
+                                                    </ItemsPanelTemplate>
+                                                </ItemsControl.ItemsPanel>
+                                            </ItemsControl>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Grid>
+                                <Grid Grid.Column="1" Visibility="Hidden"  x:Name="sellBodyRightRightRight1">
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                        <StackPanel Visibility="Hidden" Name="sellBodyDialogChooseProduct" Background="#f0f8ff" Grid.ColumnSpan="2" Height="300" Width="400"  HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock FontSize="20" Text="bàn 1" FontWeight="Bold" Margin="20 20"/>
+                                <TextBlock FontSize="20" Name="sellBodyDialogChooseProductTitle" FontWeight="Bold" Text="Coca-Cola" Margin="90 20 0 0" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="100 3 0 0" FontSize="20" Text="Số Lượng:"/>
+                                <TextBox Height="33" Width="30" Name="sellBodyDialogChooseProductQuantity" FontSize="20" Margin="10 0 0 0" Text="2"/>
+                                <TextBlock FontSize="20" Text="Lon" Margin="0 3 15 0" />
+                                <Button Content="+" Name="sellBodyDialogChooseProductIncremnent"  Margin="0 0 10 0"  />
+                                <Button Content="-" Name="sellBodyDialogChooseProductDiminish"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Height="100" Width="100" Margin="30 10 0 0" Source="https://png.pngtree.com/png-clipart/20190910/ourlarge/pngtree-cute-and-beauty-floral-flower-vintage-leaf-nature-png-image_1726074.jpg"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontSize="20"  Margin="10 43 10 0" Text="Giá:"/>
+                                    <TextBox FontSize="20" Height="33" Width="70"  Text="20.000" Name="sellBodyDialogChooseProductPricer" />
+                                </StackPanel>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Button Content="Đồng Ý" Name="sellBodyDialogChooseProductAgree" Click="btn_sellBodyDialogChooseProductAgree"  Margin="0 15 14 0" Width="100" Height="30"/>
+                                <Button Content="Hủy" Name="sellBodyDialogChooseProductCanCel" Click="btn_sellBodyDialogChooseProductCanCel" Margin="0 15 0 0" Width="100" Height="30"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+                
+                <!--Quản lý-->
+                <TabItem Header="Quản Lý">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="200*"/>
+                            <ColumnDefinition Width="950*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0"  Margin="0 20 0 0">
+                            <StackPanel>
+                                <Button Content="Quản Lý Thực Đơn" Name="manageBodyMenuButton" Click="btn_manageBodyMenu" Margin="0 10 0 0"/>
+                                <Button Content="Quản Lý Bàn" Name="manageBodyTableButton" Click="btn_manageBodyTable" Margin="0 10 0 0"/>
+                                <Button Content="Quản Lý Nhóm Món" Name="manageBodyGroupOfDishesButton" Click="btn_manageBodyGroupOfDishes"  Margin="0 10 0 0"/>
+                                <Button Content="Quản Lý Tài Khoản" Name="manageBodyAccountbutton" Click="btn_manageBodyAccount"  Margin="0 10 0 0"/>
+                            </StackPanel>
+                        </Grid>
+                        <Grid  Grid.Column="1" Visibility="Hidden" x:Name="manageBodyTabble" >
+                            <StackPanel  Height="650" Width="630" Margin="20 20 0 0" VerticalAlignment="Top" HorizontalAlignment="Left">
+                                <DataGrid x:Name="manageBodyTableDataGrip" Height="250" VerticalAlignment="Bottom" SelectionChanged="btn_manageBodyTableDataGrip"  >
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn x:Name="colMaban" Binding="{Binding MaBan}" Header="Mã Bàn" Width="120*"/>
+                                        <DataGridTextColumn x:Name="colTenban" Binding="{Binding TenBan}" Header="Tên Bàn" Width="120*" />
+                                        <DataGridTextColumn x:Name="coltrangthai" Binding="{Binding TrangThai}" Header="Trạng Thái" Width="120*"/>
+                                      
+                                    </DataGrid.Columns>
+
+                                </DataGrid>
+                            </StackPanel>
+                            <StackPanel  VerticalAlignment="Top" Margin="10 20 145 0" HorizontalAlignment="Right"  >
+                                <Button Content="Thêm" Width="100" Name="manageBodyTableAdd" Click="btn_manageBodyTableAdd" Margin="10  20 0 0"/>
+                                <Button Content="Sửa" Width="100" Name="manageBodyTableUpdate" Click="btn_manageBodyTableUpdate" Margin="10  20 0 0"/>
+                                <Button Content="Xóa" Width="100" Click="btn_manageBodyTableDelete" Name="manageBodyTableDelete"  Margin="10  20 0 0"/>
+                            </StackPanel>
+                        </Grid>
+                        <Grid Grid.Column="1" >
+                            <StackPanel Height="200" Visibility="Hidden" Width="200" VerticalAlignment="Top" Margin="200 80 0 0" HorizontalAlignment="Left"  Name="manageBodyTableDialogAdd"  Background="#a9a9a9">
+                                <TextBlock FontSize="20" Text="Thêm Bàn Mới" Margin="35 10 0 0" />
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0 20 0 0" HorizontalAlignment="Center">
+                                    <TextBlock Text="Mã bàn:" FontSize="15" Margin="0 0 10 0" Height="30"/>
+                                    <TextBox Width="70" Height="30" x:Name="DialogDiskTable" FontSize="15" Margin="0 0 0 10" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0 20 0 0" HorizontalAlignment="Center">
+                                    <TextBlock Text="Tên Bàn:" FontSize="15" Margin="0 0 10 0" Height="30"/>
+                                    <TextBox Width="70" Height="30" x:Name="DialogNameTable" FontSize="15" Margin="0 0 0 10" />
+                                </StackPanel>
+                               
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Height="30" Width="90" Name="manageBodyTableDialogAgree" Click="btn_manageBodyTableDialogAgree"  BorderBrush="{x:Null}" Background="#add8e6" Foreground="Black" FontSize="13" Margin="10 0 5 0" Content="Xác Nhận"/>
+                                    <Button Content="Hủy Bỏ" BorderBrush="{x:Null}" Name="manageBodyTableDialogCanCel" Click="btn_manageBodyTableDialogCanCel" FontSize="13" Background="#add8e6" Foreground="Black"  Width="90"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                        <Grid Grid.Column="1" >
+                            <StackPanel Height="200" Visibility="Hidden" Width="200" VerticalAlignment="Top" Margin="200 80 0 0" HorizontalAlignment="Left"  Name="manageBodyTableDialogUpdate"  Background="#a9a9a9">
+                                <TextBlock FontSize="20" Text="Sửa Bàn " Margin="35 10 0 0" />
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0 20 0 0" HorizontalAlignment="Center">
+                                    <TextBlock Text="Mã bàn:" FontSize="15" Margin="0 0 10 0" Height="30"/>
+                                    <TextBox Width="70" Height="30" FontSize="15" Margin="0 0 0 10" Name="DialogDiskTableUpdate" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0 20 0 0" HorizontalAlignment="Center">
+                                    <TextBlock Text="Tên Bàn:" FontSize="15" Margin="0 0 10 0" Height="30"/>
+                                    <TextBox Width="70" Height="30" FontSize="15" Margin="0 0 0 10" Name="DialogNameTableUpdate" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Height="30" Width="90" Name="manageBodyTableDialogUpdatetAgree" Click="btn_manageBodyTableDialogUpdateAgree"  BorderBrush="{x:Null}" Background="#add8e6" Foreground="Black" FontSize="13" Margin="10 0 5 0" Content="Xác Nhận"/>
+                                    <Button Content="Hủy Bỏ" BorderBrush="{x:Null}" Name="manageBodyTableDialogUpdateCanCel" Click="btn_manageBodyTableDialogUpdateCanCel" FontSize="13" Background="#add8e6" Foreground="Black"  Width="90"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                        <Grid  Grid.Column="1" Name="manageBodyAccount" Visibility="Hidden" >
+                            <StackPanel  Height="650" Width="630"  Margin="20 20 0 0" VerticalAlignment="Top" HorizontalAlignment="Left">
+                                <DataGrid Name="manageBodyAccountDataGrip"   ColumnWidth="200" >
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn x:Name="colId" Binding="{Binding id }" Header="Mã tài khoản" Width="80*"/>
+                                        <DataGridTextColumn x:Name="colNameAccount" Binding="{Binding TenDangNhap}" Header="Tên tài khoản" Width="120*" />
+                                        <DataGridTextColumn x:Name="colPassWord" Binding="{Binding MatKhau}" Header="Mật khẩu" Width="120*"/>
+
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </StackPanel>
+                            <StackPanel  VerticalAlignment="Top" Margin="10 10 145 0" HorizontalAlignment="Right"  >
+                                <Button Content="Thêm" Width="100" Name="manageBodyAccountAdd" Click="btn_manageBodyAccountAdd" Margin="10  20 0 0"/>
+                                <Button Content="Sửa" Width="100" Name="manageBodyAccountUpdate" Click="btn_manageBodyAccountUpdate" Margin="10  20 0 0"/>
+                                <Button Content="Xóa" Width="100" Click="btn_manageBodyAccountDelete" Name="manageBodyAccountDelete"  Margin="10  20 0 0"/>
+                            </StackPanel>
+                        </Grid>
+                        <Grid Grid.Column="1" >
+                            <StackPanel Height="230" Visibility="Hidden" Width="250" VerticalAlignment="Top" Margin="200 80 0 0" HorizontalAlignment="Left"  Name="manageBodyAccountDialogAdd"  Background="#a9a9a9">
+                                <TextBlock FontSize="20" Text="Thêm Tài Khoản Mới" Margin="35 10 0 0" />
+                                <StackPanel Orientation="Horizontal"  Margin="0 20 0 0">
+                                    <TextBlock Text="Tên Tài Khoản:" Width="95" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="15" Margin="50 0 10 0" Height="30"/>
+                                    <TextBox Width="70" Height="30"  Text="kkk"  FontSize="15" Margin="0 0 0 10" Name="manageBodyAccountDialogNameAccount"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"  Margin="0 10 0 0" HorizontalAlignment="Center">
+                                    <TextBlock Text="Mật Khẩu:" Width="100"   FontSize="15" Margin="30 0 0 0" Height="30"/>
+                                    <TextBox  Width="70" Height="30" Text="kk" FontSize="15" Name="manageBodyAccountDialogPassWord" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="25 15">
+                                    <Button Height="30" Width="95" Name="manageBodyAccountDialogAgree" Click="btn_manageBodyAcountDialogAgree"  BorderBrush="{x:Null}" Background="#add8e6" Foreground="Black" FontSize="13" Margin="10 0 5 0" Content="Xác Nhận"/>
+                                    <Button Content="Hủy Bỏ" BorderBrush="{x:Null}" Name="manageBodyAccountDialogCanCel" Click="btn_manageBodyAccountDialogCanCel" FontSize="13" Background="#add8e6" Foreground="Black"  Width="90"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                        <Grid Grid.Column="1" >
+                            <StackPanel Height="230" Visibility="Hidden" Width="250" VerticalAlignment="Top" Margin="200 80 0 0" HorizontalAlignment="Left"  Name="manageBodyAccountDialogUpdate"  Background="#a9a9a9">
+                                <TextBlock FontSize="20" Text="Thêm Tài Khoản Mới" Margin="35 10 0 0" />
+                                <StackPanel Orientation="Horizontal"  Margin="0 20 0 0">
+                                    <TextBlock Text="Tên Tài Khoản:" Width="95" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="15" Margin="50 0 10 0" Height="30"/>
+                                    <TextBox Width="70" Height="30"  Text="kkk"  FontSize="15" Margin="0 0 0 10" Name="manageBodyAccountDialogNameAccountUpdate"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"  Margin="0 10 0 0" HorizontalAlignment="Center">
+                                    <TextBlock Text="Mật Khẩu:" Width="100"   FontSize="15" Margin="30 0 0 0" Height="30"/>
+                                    <TextBox  Width="70" Height="30" Text="kk" FontSize="15" Name="manageBodyAccountDialogPassWordUpdate" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="25 15">
+                                    <Button Height="30" Width="95" Name="manageBodyAccountDialogAgreeUpdate" Click="btn_manageBodyAcountDialogAgree"  BorderBrush="{x:Null}" Background="#add8e6" Foreground="Black" FontSize="13" Margin="10 0 5 0" Content="Xác Nhận"/>
+                                    <Button Content="Hủy Bỏ" BorderBrush="{x:Null}" Name="manageBodyAccountDialogCanCelUpdate" Click="btn_manageBodyAccountDialogCanCelUpdate" FontSize="13" Background="#add8e6" Foreground="Black"  Width="90"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                        <Grid  Grid.Column="1" Name="manageBodyGroupOfDishes" Visibility="Hidden" >
+                            <StackPanel  Height="650" Width="630"  Margin="20 20 0 0" VerticalAlignment="Top" HorizontalAlignment="Left">
+                                <DataGrid Name="manageBodyGroupOfDishesDataGrip"   ColumnWidth="200" >
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn x:Name="colMaloai" Binding="{Binding MaLoai }" Header="Mã Loại Món" Width="80*"/>
+                                    <DataGridTextColumn x:Name="colTenNhomMon" Binding="{Binding TenLoai}" Header="Tên Nhóm Món" Width="120*" />
+                                        </DataGrid.Columns>
+
+                                </DataGrid>
+                            </StackPanel>
+                            <StackPanel  VerticalAlignment="Top" Margin="10 10 145 0" HorizontalAlignment="Right"  >
+                                <Button Content="Thêm" Width="100" Name="manageBodyGroupOfDishesAdd" Click="btn_manageBodyGroupOfDishestAdd" Margin="10  20 0 0"/>
+                                <Button Content="Sửa" Width="100" Name="manageBodyGroupOfDishestUpdate" Click="btn_manageBodyGroupOfDishesUpdate" Margin="10  20 0 0"/>
+                                <Button Content="Xóa" Width="100" Click="btn_manageBodyGroupOfDishesDelete" Name="manageBodyGroupOfDishesDelete"  Margin="10  20 0 0"/>
+                            </StackPanel>
+                        </Grid>
+                        <Grid Grid.Column="1" >
+                            <StackPanel Height="230" Visibility="Hidden" Width="250" VerticalAlignment="Top" Margin="200 80 0 0" HorizontalAlignment="Left"  Name="manageBodyGroupOfDishesDialogAdd"  Background="#a9a9a9">
+                                <TextBlock FontSize="20" Text="Thêm Tài Khoản Mới" Margin="35 10 0 0" />
+                                <StackPanel Orientation="Horizontal"  Margin="0 20 0 0">
+                                    <TextBlock Text="Tên Tài Khoản:" Width="95" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="15" Margin="50 0 10 0" Height="30"/>
+                                    <TextBox Width="70" Height="30"  Text="kkk"  FontSize="15" Margin="0 0 0 10" Name="manageBodyGroupOfDishestDialogNameAccount"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"  Margin="0 10 0 0" HorizontalAlignment="Center">
+                                    <TextBlock Text="Mật Khẩu:" Width="100"   FontSize="15" Margin="30 0 0 0" Height="30"/>
+                                    <TextBox  Width="70" Height="30" Text="kk" FontSize="15" Name="manageBodyGroupOfDishesDialogPassWord" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="25 15">
+                                    <Button Height="30" Width="95" Name="manageBodyGroupOfDishesDialogAgree" Click="btn_manageBodyGroupOfDisheDialogAgree"  BorderBrush="{x:Null}" Background="#add8e6" Foreground="Black" FontSize="13" Margin="10 0 5 0" Content="Xác Nhận"/>
+                                    <Button Content="Hủy Bỏ" BorderBrush="{x:Null}" Name="manageBodyGroupOfDishestDialogCanCel" Click="btn_manageBodyGroupOfDishetDialogCanCel" FontSize="13" Background="#add8e6" Foreground="Black"  Width="90"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                        <Grid Grid.Column="1" >
+                            <StackPanel Height="230" Visibility="Hidden" Width="250" VerticalAlignment="Top" Margin="200 80 0 0" HorizontalAlignment="Left"  Name="manageBodyGroupOfDishesDialogUpdate"  Background="#a9a9a9">
+                                <TextBlock FontSize="20" Text="Thêm Tài Khoản Mới" Margin="35 10 0 0" />
+                                <StackPanel Orientation="Horizontal"  Margin="0 20 0 0">
+                                    <TextBlock Text="Tên Tài Khoản:" Width="95" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="15" Margin="50 0 10 0" Height="30"/>
+                                    <TextBox Width="70" Height="30"  Text="kkk"  FontSize="15" Margin="0 0 0 10" Name="manageBodyGroupOfDishestDialogNameAccountUpdate"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"  Margin="0 10 0 0" HorizontalAlignment="Center">
+                                    <TextBlock Text="Mật Khẩu:" Width="100"   FontSize="15" Margin="30 0 0 0" Height="30"/>
+                                    <TextBox  Width="70" Height="30" Text="kk" FontSize="15" Name="manageBodyGroupOfDishesDialogUpdatePassWord" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="25 15">
+                                    <Button Height="30" Width="95" Name="manageBodyGroupOfDishesDialogUpdateAgree" Click="btn_manageBodyGroupOfDisheDialogUpdateAgree"  BorderBrush="{x:Null}" Background="#add8e6" Foreground="Black" FontSize="13" Margin="10 0 5 0" Content="Xác Nhận"/>
+                                    <Button Content="Hủy Bỏ" BorderBrush="{x:Null}" Name="manageBodyGroupOfDishestDialogUpdateCanCel" Click="btn_manageBodyGroupOfDishetDialogUpdateCanCel" FontSize="13" Background="#add8e6" Foreground="Black"  Width="90"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                        <Grid  Grid.Column="1" Name="manageBodyMenu" Visibility="Hidden" >
+                            <StackPanel  Height="650" Width="630"  Margin="20 20 0 0" VerticalAlignment="Top" HorizontalAlignment="Left">
+                                <DataGrid Name="manageBodyMenusDataGrip"   ColumnWidth="200" >
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn  Binding="{Binding MaMon }" Header="Mã Món" Width="80*"/>
+                                        <DataGridTextColumn  Binding="{Binding TenMon}" Header="Tên Món" Width="120*" />
+                                        <DataGridTextColumn  Binding="{Binding MaLoai}" Header="Mã loại" Width="120*"/>
+                                        <DataGridTextColumn  Binding="{Binding DVT}" Header="Đơn vị tính" Width="120*"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </StackPanel>
+                            <StackPanel  VerticalAlignment="Top" Margin="10 10 145 0" HorizontalAlignment="Right"  >
+                                <Button Content="Thêm" Width="100" Name="manageBodyMenuAdd" Click="btn_manageBodyMenuAdd" Margin="10  20 0 0"/>
+                                <Button Content="Sửa" Width="100" Name="manageBodyMenuUpdate" Click="btn_manageBodyMenuUpdate" Margin="10  20 0 0"/>
+                                <Button Content="Xóa" Width="100" Click="btn_manageBodyMenuDelete" Name="manageBodyMenuDelete"  Margin="10  20 0 0"/>
+                            </StackPanel>
+                        </Grid>
+                        <Grid  Grid.Column="1" >
+                            <StackPanel Height="300"  Width="250" VerticalAlignment="Top" Margin="200 80 0 0" Visibility="Hidden" HorizontalAlignment="Left"  Name="manageBodyMenusDialogAdd"  Background="#a9a9a9">
+                                <TextBlock FontSize="20" Text="Thêm Tài Khoản Mới" Margin="35 10 0 0" />
+                                <StackPanel Orientation="Horizontal"  Margin="0 20 0 0">
+                                    <TextBlock Text="Mã món:" Width="95" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="15" Margin="50 0 10 0" Height="30"/>
+                                    <TextBox Width="70" Height="30"  Text="kkk"  FontSize="15" Margin="0 0 0 10" Name="manageBodyMenuDialogDistCode"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"  Margin="0 10 0 0" HorizontalAlignment="Center">
+                                    <TextBlock Text="Tên món:" Width="100"   FontSize="15" Margin="30 0 0 0" Height="30"/>
+                                    <TextBox  Width="70" Height="30" Text="kk" FontSize="15" Name="manageBodyMenuDialognameCode" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"  Margin="0 10 0 0" HorizontalAlignment="Center">
+                                    <TextBlock Text="Mã loại:" Width="100"   FontSize="15" Margin="30 0 0 0" Height="30"/>
+                                    <TextBox  Width="70" Height="30" Text="kk" FontSize="15" Name="manageBodyMenuDialogDistNameTypeCode" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"  Margin="0 10 0 0" HorizontalAlignment="Center">
+                                    <TextBlock Text="Đơn giá:" Width="100"   FontSize="15" Margin="30 0 0 0" Height="30"/>
+                                    <TextBox  Width="70" Height="30" Text="kk" FontSize="15" Name="manageBodyMenuDialogPricer" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"  Margin="0 10 0 0" HorizontalAlignment="Center">
+                                    <TextBlock Text="Đơn vị tính:" Width="100"   FontSize="15" Margin="30 0 0 0" Height="30"/>
+                                    <TextBox  Width="70" Height="30" Text="kk" FontSize="15" Name="manageBodyMenuDialogUnit"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="25 15">
+                                    <Button Height="30" Width="95" Name="manageBodyMenuDialogAgree" Click="btn_manageBodyMenuDialogAgree"  BorderBrush="{x:Null}" Background="#add8e6" Foreground="Black" FontSize="13" Margin="10 0 5 0" Content="Xác Nhận"/>
+                                    <Button Content="Hủy Bỏ" BorderBrush="{x:Null}" Name="manageBodyMenutDialogCanCel" Click="btn_manageBodyMenutDialogCanCel" FontSize="13" Background="#add8e6" Foreground="Black"  Width="90"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                        <Grid  Grid.Column="1" >
+                            <StackPanel Height="300"  Width="250" VerticalAlignment="Top" Margin="200 80 0 0" Visibility="Hidden" HorizontalAlignment="Left"  Name="manageBodyMenusDialogUpdate"  Background="#a9a9a9">
+                                <TextBlock FontSize="20" Text="Thêm Tài Khoản Mới" Margin="35 10 0 0" />
+                                <StackPanel Orientation="Horizontal"  Margin="0 20 0 0">
+                                    <TextBlock Text="Mã món:" Width="95" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="15" Margin="50 0 10 0" Height="30"/>
+                                    <TextBox Width="70" Height="30"  Text="kkk"  FontSize="15" Margin="0 0 0 10" Name="manageBodyMenuDialogDistCodeUpdate"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"  Margin="0 10 0 0" HorizontalAlignment="Center">
+                                    <TextBlock Text="Tên món:" Width="100"   FontSize="15" Margin="30 0 0 0" Height="30"/>
+                                    <TextBox  Width="70" Height="30" Text="kk" FontSize="15" Name="manageBodyMenuDialognameCodeUpdate" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"  Margin="0 10 0 0" HorizontalAlignment="Center">
+                                    <TextBlock Text="Mã loại:" Width="100"   FontSize="15" Margin="30 0 0 0" Height="30"/>
+                                    <TextBox  Width="70" Height="30" Text="kk" FontSize="15" Name="manageBodyMenuDialogDistNameTypeCodeUpdate" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"  Margin="0 10 0 0" HorizontalAlignment="Center">
+                                    <TextBlock Text="Đơn giá:" Width="100"   FontSize="15" Margin="30 0 0 0" Height="30"/>
+                                    <TextBox  Width="70" Height="30" Text="kk" FontSize="15" Name="manageBodyMenuDialogPricerUpdate" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"  Margin="0 10 0 0" HorizontalAlignment="Center">
+                                    <TextBlock Text="Đơn vị tính:" Width="100"   FontSize="15" Margin="30 0 0 0" Height="30"/>
+                                    <TextBox  Width="70" Height="30" Text="kk" FontSize="15" Name="manageBodyMenuDialogUnitUpdate"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="25 15">
+                                    <Button Height="30" Width="95" Name="manageBodyMenuDialogAgreeUpdate" Click="btn_manageBodyMenuDialogAgreeUpdate"  BorderBrush="{x:Null}" Background="#add8e6" Foreground="Black" FontSize="13" Margin="10 0 5 0" Content="Xác Nhận"/>
+                                    <Button Content="Hủy Bỏ" BorderBrush="{x:Null}" Name="manageBodyMenutDialogCanCelUpdate" Click="btn_manageBodyMenutDialogCanCelUpdate" FontSize="13" Background="#add8e6" Foreground="Black"  Width="90"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </TabItem>
+                
+                
+                <!--Thống kê-->
+                <TabItem Header="Thống Kê">
+                    <StackPanel Height="650" Width="1150" >
+                        <StackPanel >
+                            <StackPanel HorizontalAlignment="Center" Height="100" Width="1150" Orientation="Horizontal" >
+                                <DatePicker Name="statisticalBodyPickerStart"  Height="30" Width="150" HorizontalAlignment="Left" Margin="290 0 30 0" DisplayDateStart="10/10/2021" DisplayDateEnd="10/10/2025"></DatePicker>
+                                <TextBlock Height="40" Margin="0 30 30 0" Text="Đến Ngày"/>
+                                <DatePicker Height="30"  Name="statisticalBodyPickerEnd" Width="150" HorizontalAlignment="Left" DisplayDateStart="9/10/2021" DisplayDateEnd="10/10/2025"></DatePicker>
+                                <Button Margin="30 10 0 0" Content="Cập nhật"/>
+                            </StackPanel>
+                            <TextBlock Text="Thống kê theo hóa đơn" Margin="0 0 0 20" FontSize="20" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                        <ScrollViewer>
+                            <StackPanel  >
+                                <DataGrid Height="250" x:Name="statisticalBodyDataGrip" Width="750">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Mã Món" Binding="{Binding MaMon}" Width="120*"/>
+                                        <DataGridTextColumn Header="Thời Gian" Binding="{Binding Thoigian}" Width="120*"/>
+                                        <DataGridTextColumn Header="Tiền Món" Binding="{Binding TienMon}" Width="120*" />
+                                        <DataGridTextColumn Header="Giảm Giá" Binding="{Binding GiamGia}" Width="120*"/>
+                                        <DataGridTextColumn Header="Thành Tiền" Binding="{Binding ThanhTien}" Width="120*"/>
+                                        <DataGridTextColumn Header="Giảm Giá" Binding="{Binding GiamGia}" Width="120*"/>
+                                        <DataGridTextColumn Header="Các Món" Binding="{Binding CacMon}" Width="120*"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                                <StackPanel Orientation="Horizontal" Margin="220 10 0 0">
+                                    <TextBlock Height="20"  Text="Tổng số hóa đơn thanh toán"/>
+                                    <TextBox Height="25" Margin="5 0 5 0" Width="40" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"  Margin="220 0 0 0">
+                                    <TextBlock Height="20" Text="Tiền Món"/>
+                                    <TextBox Height="25" Margin="104 0 0 0" Width="40"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"  Margin="220 0 0 0">
+                                    <TextBlock Height="20" Text="Tiền Giảm Giá"/>
+                                    <TextBox Height="25" Margin="79 0 0 0" Width="40"/>
+                                </StackPanel>
+                                <Label Height="1" Width="200" HorizontalAlignment="Left" Margin="220 5 0 0" Background="Black"/>
+                                <StackPanel Margin="220 0 0 0" Orientation="Horizontal">
+                                    <TextBlock Height="20" Text="Tiền Giảm Giá"/>
+                                    <TextBox Height="25" Margin="80 0 0 0" Width="40"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="Quản Lý-NVL">
+                    <TextBlock Text="Ask for any question!" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </TabItem>
+                <TabItem Header="Thiết Lập">
+                    <TextBlock Text="Ask for any question!" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </TabItem>
+            </dragablz:TabablzControl>
+        </Grid>
+    </Grid>
+</Window>
